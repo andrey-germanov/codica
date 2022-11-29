@@ -1,17 +1,38 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
 import { Divider, ListItemText, ListItem, List } from "@mui/material";
-import { weatherSelector } from "../../store/selectors";
+import axios from "axios";
+import { IWeatherCity } from "../../store/typeStore";
 
 export const WeatherCity = () => {
   const { name } = useParams<string>();
-  const weather = useSelector(weatherSelector);
 
-  const filtered = weather.filter((city) => city.name === name);
+  const [city, setCity] = useState<IWeatherCity[]>();
+
+  useEffect(() => {
+    const controller = new AbortController();
+    const signal = controller.signal;
+    if (!name) return;
+    const apiKey = "5a808fd62f78702c87130a6f46054a30";
+
+    axios
+      .get(
+        `https://api.openweathermap.org/data/2.5/weather?q=${name}&appid=${apiKey}&units=metric`,
+        { signal }
+      )
+      .then((res) => {
+        const data = [{ name: name, value: res.data }]
+        setCity(data);
+      })
+      .catch((err) => console.log(err));
+    return () => {
+      controller.abort();
+    };
+  }, [name]);
+
   return (
-    <div id="#WeatherCity">
-      {filtered.map((city, key) => {
+    <div data-testid="WeatherCity">
+      {city && city.map((city, key) => {
         return (
           <List
             sx={{

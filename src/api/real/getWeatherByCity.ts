@@ -2,8 +2,6 @@ import axios, { GenericAbortSignal } from "axios";
 import { AnyAction, Dispatch } from "redux";
 import { getCityWeatherAction } from "../../store/actions";
 
-const apiKey = "5a808fd62f78702c87130a6f46054a30";
-
 export const getWeatherByCity = async (
   lat: number,
   lon: number,
@@ -11,6 +9,8 @@ export const getWeatherByCity = async (
   signal: GenericAbortSignal,
   dispatch: Dispatch<AnyAction>
 ) => {
+  const apiKey = "5a808fd62f78702c87130a6f46054a30";
+
   await axios
     .get(
       `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`,

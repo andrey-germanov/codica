@@ -15,7 +15,7 @@ export const IncorrectCityAlertComp = ({ incorrectCity }: props) => {
       }}
     >
       incorrect city, it will not be added for your list cities:
-      <b>{incorrectCity}</b>
+      <b data-testid='incorrectCity'>{incorrectCity}</b>
     </Alert>
   );
 };

@@ -1,64 +1,56 @@
-import { shallow, ShallowWrapper } from "enzyme";
 import { WeatherListComp } from "../comp";
 import responses from "../../../api/mock/responses";
 import sinon from "sinon";
-import toJson from "enzyme-to-json";
+import {
+  fireEvent,
+  render,
+  RenderResult,
+  screen,
+} from "@testing-library/react";
+import { Provider, ReactReduxContext } from "react-redux";
+import * as redux from "react-redux";
+import { store } from "../../../store";
+import { BrowserRouter as Router } from "react-router-dom";
 
 describe("should render WeatherListComp component", () => {
   const mockCities = ["Odessa", "Kiev"];
 
+  let comp: RenderResult;
   const props = {
     weather: responses.mockWeatherCities(mockCities),
-    RefreshWeather: sinon.spy(),
-    RemoveCity: sinon.spy(),
-    AddCity: sinon.spy(),
+    RefreshWeather: jest.fn(),
+    RemoveCity: jest.fn(),
+    AddCity: jest.fn(),
   };
+  beforeEach(() => {
+    comp = render(
+      <Provider store={store}>
+        <Router>
+          <WeatherListComp {...props} />
+        </Router>
+      </Provider>
+    );
+  });
 
-  const comp: ShallowWrapper<
-    any,
-    Readonly<{}>,
-    React.Component<{}, {}, any>
-  > = shallow(<WeatherListComp {...props} />);
+  describe("render textfield", () => {
+    it("displays the correct input value ", async () => {
+      const { getByTestId } = comp;
+      const input = getByTestId("input-add-city") as HTMLInputElement;
+      fireEvent.change(input, { target: { value: "Mariupol" } });
+      expect(input.value).toBe("Mariupol");
+    });
+  });
 
-  expect(toJson(comp)).toMatchSnapshot();
-  
   describe("has weather", () => {
-    const component = shallow(<WeatherListComp {...props} />);
     it("simple props", () => {
-      const links = component.find("Link");
+      const links = comp.getAllByTestId("city");
 
-      expect(links.length).toBe(props.weather.length);
+      expect(links).toHaveLength(props.weather.length);
     });
-  });
-
-  describe("has no weather", () => {
-    it("props without weather", () => {
-      const props = {
-        RefreshWeather: sinon.spy(),
-        RemoveCity: sinon.spy(),
-        AddCity: sinon.spy(),
-      };
-      const component = shallow(<WeatherListComp {...props} />);
-      const links = component.find("Link");
-
-      expect(links).toHaveLength(0);
-    });
-  });
-
-  it("should contain .WeatherListComp wrapper", () => {
-    const wrapperId = comp.find("#WeatherListComp");
-
-    expect(wrapperId).toHaveLength(1);
   });
 
   it("should render city card ", () => {
-    const cards = comp.find(`#${mockCities[0]}`);
+    const cards = comp.getAllByTestId(`${mockCities[0]}`);
     expect(cards).toHaveLength(1);
-  });
-
-  it("should contain links equal count cities in weather array ", () => {
-    const links = comp.find("Link");
-
-    expect(links).toHaveLength(props.weather.length);
   });
 });

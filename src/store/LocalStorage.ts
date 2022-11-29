@@ -1,6 +1,4 @@
-import * as R from "ramda";
 import { deleteDublicateCity } from "../utils";
-import { IWeatherCity } from "./typeStore";
 
 const get = () => JSON.parse(window.localStorage.getItem("cities") || "[]");
 

@@ -60,7 +60,7 @@ export const WeatherListComp = ({
     RemoveCity(name);
   };
   return (
-    <div id="WeatherListComp">
+    <div data-testid='WeatherListComp'>
       <div
         style={{
           display: "flex",
@@ -72,14 +72,16 @@ export const WeatherListComp = ({
       >
         <IncorrectCityAlert />
         <TextField
+          name={'input-add-city'}
+          id={'input-add-city'}
           error={typeError}
-          id="outlined-basic"
           label="Type City"
           variant="outlined"
           value={inputNewCity}
           onChange={handlerInputNewCity}
+          inputProps={{ "data-testid": "input-add-city" }}
         />
-        <Button id="addCity" variant="contained" size="large" onClick={addCity}>
+        <Button data-testid="addCity" variant="contained" size="large" onClick={()=>addCity}>
           add city
         </Button>
         <Typography sx={{ fontSize: 12 }} color="text.secondary" gutterBottom>
@@ -97,73 +99,76 @@ export const WeatherListComp = ({
           justifyContent: "center",
         }}
       >
-        {weather && weather.map((city, key) => {
-          if (!city.value) return;
-          return (
-            <Link
-              to={`${city.name}`}
-              style={{ textDecoration: "none" }}
-              key={key}
-              id={city.name}
-            >
-              <Card
-                sx={{ minWidth: 275 }}
-                style={{
-                  backgroundColor: "#99c3f8",
-                }}
+        {weather &&
+          weather.map((city, key) => {
+            if (!city.value) return;
+            return (
+              <Link
+                to={`${city.name}`}
+                style={{ textDecoration: "none" }}
                 key={key}
+                id={city.name}
+                data-testid={city.name}
               >
-                <CardContent>
-                  <Typography
-                    sx={{ fontSize: 18 }}
-                    color="text.secondary"
-                    gutterBottom
-                  >
-                    {city.name}
-                  </Typography>
-                  <Typography variant="h5" component="div">
-                    {city.value.weather[0].main}
-                  </Typography>
-                  <Typography variant="body2">
-                    Temperature: {city.value.main.temp}ºС
-                  </Typography>
-                  <Typography variant="body2">
-                    Feels like: {city.value.main.feels_like}ºC
-                  </Typography>
-                  <img
-                    src={`http://openweathermap.org/img/wn/${city.value.weather[0].icon}@2x.png`}
-                    alt={city.value.weather[0].description}
-                  />
-                </CardContent>
-                <CardActions
+                <Card
+                  sx={{ minWidth: 275 }}
                   style={{
-                    display: "flex",
-                    justifyContent: "space-between",
+                    backgroundColor: "#99c3f8",
                   }}
+                  key={key}
+                  data-testid={'city'}
                 >
-                  <Button
-                    id="button"
-                    variant="text"
-                    onClick={(e) => handlerRemoveCity(city.name, e)}
+                  <CardContent>
+                    <Typography
+                      sx={{ fontSize: 18 }}
+                      color="text.secondary"
+                      gutterBottom
+                    >
+                      {city.name}
+                    </Typography>
+                    <Typography variant="h5" component="div">
+                      {city.value.weather[0].main}
+                    </Typography>
+                    <Typography variant="body2">
+                      Temperature: {city.value.main.temp}ºС
+                    </Typography>
+                    <Typography variant="body2">
+                      Feels like: {city.value.main.feels_like}ºC
+                    </Typography>
+                    <img
+                      src={`http://openweathermap.org/img/wn/${city.value.weather[0].icon}@2x.png`}
+                      alt={city.value.weather[0].description}
+                    />
+                  </CardContent>
+                  <CardActions
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                    }}
                   >
-                    delete city
-                  </Button>
-                  <RefreshIcon
-                    onClick={(e) =>
-                      handlerRefreshWeather(
-                        city.value.coord.lat,
-                        city.value.coord.lon,
-                        city.name,
-                        e
-                      )
-                    }
-                    style={{ cursor: "pointer" }}
-                  />
-                </CardActions>
-              </Card>
-            </Link>
-          );
-        })}
+                    <Button
+                      id="button"
+                      variant="text"
+                      onClick={(e) => handlerRemoveCity(city.name, e)}
+                    >
+                      delete city
+                    </Button>
+                    <RefreshIcon
+                      onClick={(e) =>
+                        handlerRefreshWeather(
+                          city.value.coord.lat,
+                          city.value.coord.lon,
+                          city.name,
+                          e
+                        )
+                      }
+                      style={{ cursor: "pointer" }}
+                    />
+                  </CardActions>
+                </Card>
+              </Link>
+            );
+          })}
       </div>
     </div>
   );
