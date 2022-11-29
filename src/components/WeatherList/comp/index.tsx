@@ -81,7 +81,7 @@ export const WeatherListComp = ({
           onChange={handlerInputNewCity}
           inputProps={{ "data-testid": "input-add-city" }}
         />
-        <Button data-testid="addCity" variant="contained" size="large" onClick={()=>addCity}>
+        <Button data-testid="addCity" variant="contained" size="large" onClick={addCity}>
           add city
         </Button>
         <Typography sx={{ fontSize: 12 }} color="text.secondary" gutterBottom>
