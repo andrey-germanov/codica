@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[` 1`] = `
+<ForwardRef(Alert)
+  severity="error"
+  style={
+    Object {
+      "position": "fixed",
+      "zIndex": "2",
+    }
+  }
+>
+  incorrect city, it will not be added for your list cities:
+  <b>
+    sfdafr
+  </b>
+</ForwardRef(Alert)>
+`;

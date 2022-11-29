@@ -1,0 +1,231 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[` 1`] = `
+<div
+  id="WeatherListComp"
+>
+  <div
+    style={
+      Object {
+        "alignItems": "center",
+        "display": "flex",
+        "gap": "20px",
+        "justifyContent": "center",
+        "padding": "20px 0",
+      }
+    }
+  >
+    <IncorrectCityAlert />
+    <ForwardRef(TextField)
+      error={false}
+      id="outlined-basic"
+      label="Type City"
+      onChange={[Function]}
+      value=""
+      variant="outlined"
+    />
+    <ForwardRef(Button)
+      id="addCity"
+      onClick={[Function]}
+      size="large"
+      variant="contained"
+    >
+      add city
+    </ForwardRef(Button)>
+    <ForwardRef(Typography)
+      color="text.secondary"
+      gutterBottom={true}
+      sx={
+        Object {
+          "fontSize": 12,
+        }
+      }
+    >
+      real data
+    </ForwardRef(Typography)>
+  </div>
+  <div
+    style={
+      Object {
+        "display": "flex",
+        "flexWrap": "wrap",
+        "gap": "20px",
+        "justifyContent": "center",
+      }
+    }
+  >
+    <Link
+      id="Odessa"
+      key="0"
+      style={
+        Object {
+          "textDecoration": "none",
+        }
+      }
+      to="Odessa"
+    >
+      <ForwardRef(Card)
+        key="0"
+        style={
+          Object {
+            "backgroundColor": "#99c3f8",
+          }
+        }
+        sx={
+          Object {
+            "minWidth": 275,
+          }
+        }
+      >
+        <ForwardRef(CardContent)>
+          <ForwardRef(Typography)
+            color="text.secondary"
+            gutterBottom={true}
+            sx={
+              Object {
+                "fontSize": 18,
+              }
+            }
+          >
+            Odessa
+          </ForwardRef(Typography)>
+          <ForwardRef(Typography)
+            component="div"
+            variant="h5"
+          >
+            Rain
+          </ForwardRef(Typography)>
+          <ForwardRef(Typography)
+            variant="body2"
+          >
+            Temperature: 
+            111
+            ºС
+          </ForwardRef(Typography)>
+          <ForwardRef(Typography)
+            variant="body2"
+          >
+            Feels like: 
+            111
+            ºC
+          </ForwardRef(Typography)>
+          <img
+            alt="moderate rain"
+            src="http://openweathermap.org/img/wn/10d@2x.png"
+          />
+        </ForwardRef(CardContent)>
+        <ForwardRef(CardActions)
+          style={
+            Object {
+              "display": "flex",
+              "justifyContent": "space-between",
+            }
+          }
+        >
+          <ForwardRef(Button)
+            id="button"
+            onClick={[Function]}
+            variant="text"
+          >
+            delete city
+          </ForwardRef(Button)>
+          <Memo(ForwardRef(RefreshIcon))
+            onClick={[Function]}
+            style={
+              Object {
+                "cursor": "pointer",
+              }
+            }
+          />
+        </ForwardRef(CardActions)>
+      </ForwardRef(Card)>
+    </Link>
+    <Link
+      id="Kiev"
+      key="1"
+      style={
+        Object {
+          "textDecoration": "none",
+        }
+      }
+      to="Kiev"
+    >
+      <ForwardRef(Card)
+        key="1"
+        style={
+          Object {
+            "backgroundColor": "#99c3f8",
+          }
+        }
+        sx={
+          Object {
+            "minWidth": 275,
+          }
+        }
+      >
+        <ForwardRef(CardContent)>
+          <ForwardRef(Typography)
+            color="text.secondary"
+            gutterBottom={true}
+            sx={
+              Object {
+                "fontSize": 18,
+              }
+            }
+          >
+            Kiev
+          </ForwardRef(Typography)>
+          <ForwardRef(Typography)
+            component="div"
+            variant="h5"
+          >
+            Rain
+          </ForwardRef(Typography)>
+          <ForwardRef(Typography)
+            variant="body2"
+          >
+            Temperature: 
+            111
+            ºС
+          </ForwardRef(Typography)>
+          <ForwardRef(Typography)
+            variant="body2"
+          >
+            Feels like: 
+            111
+            ºC
+          </ForwardRef(Typography)>
+          <img
+            alt="moderate rain"
+            src="http://openweathermap.org/img/wn/10d@2x.png"
+          />
+        </ForwardRef(CardContent)>
+        <ForwardRef(CardActions)
+          style={
+            Object {
+              "display": "flex",
+              "justifyContent": "space-between",
+            }
+          }
+        >
+          <ForwardRef(Button)
+            id="button"
+            onClick={[Function]}
+            variant="text"
+          >
+            delete city
+          </ForwardRef(Button)>
+          <Memo(ForwardRef(RefreshIcon))
+            onClick={[Function]}
+            style={
+              Object {
+                "cursor": "pointer",
+              }
+            }
+          />
+        </ForwardRef(CardActions)>
+      </ForwardRef(Card)>
+    </Link>
+  </div>
+</div>
+`;
